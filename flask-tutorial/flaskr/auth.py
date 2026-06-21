@@ -36,6 +36,8 @@ def register():
 
         flash(error)
 
+    return render_template('auth/register.html')
+
 @bp.route('/login', methods=('GET', 'POST'))
 def login():
     if request.method == 'POST':
