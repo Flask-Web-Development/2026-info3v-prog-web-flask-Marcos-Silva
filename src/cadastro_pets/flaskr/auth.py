@@ -46,24 +46,26 @@ def register():
 @bp.route('/login', methods=('GET', 'POST'))
 def login():
     if request.method == 'POST':
-        nome_dono = request.form['nome_dono']
+        cpf = request.form['cpf']
         senha = request.form['senha']
 
         db = get_db()
         error = None
+
         user = db.execute(
-            'SELECT * FROM dono WHERE nome_dono = ?', (nome_dono,)
+            'SELECT * FROM dono WHERE cpf = ?',
+            (cpf,)
         ).fetchone()
 
         if user is None:
-            error = 'Nome incorreto.'
+            error = 'CPF incorreto.'
         elif not check_password_hash(user['senha'], senha):
             error = 'Senha incorreta.'
 
         if error is None:
             session.clear()
             session['user_id'] = user['id']
-            return redirect(url_for('index'))
+            return redirect(url_for('auth.register_pet'))
 
         flash(error)
 
@@ -83,7 +85,7 @@ def load_logged_in_user():
 @bp.route('/logout')
 def logout():
     session.clear()
-    return redirect(url_for('index'))
+    return redirect(url_for('auth.login'))
 
 def login_required(view):
     @functools.wraps(view)
@@ -121,8 +123,8 @@ def register_pet():
             )
             db.commit()
 
-            return redirect(url_for('index'))
-
+            return redirect(url_for('auth.register_pet'))
+        
         flash(error)
 
     return render_template('pet/register.html')

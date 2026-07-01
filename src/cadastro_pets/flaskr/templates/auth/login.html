@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Login{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+
+    <label for="cpf">CPF</label>
+    <input name="cpf" id="cpf" required>
+
+    <label for="senha">Senha</label>
+    <input type="password" name="senha" id="senha" required>
+
+    <input type="submit" value="Entrar">
+
+  </form>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>Cadastrar Pet</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+
+    <label>Nome</label>
+    <input name="nome" required>
+
+    <label>Espécie</label>
+    <input name="especie" required>
+
+    <label>Raça</label>
+    <input name="raca">
+
+    <label>Idade</label>
+    <input name="idade">
+
+    <input type="submit" value="Salvar Pet">
+
+  </form>
+{% endblock %}
