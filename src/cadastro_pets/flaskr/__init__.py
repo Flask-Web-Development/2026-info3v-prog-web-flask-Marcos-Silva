@@ -30,6 +30,8 @@ def create_app(test_config=None):
     db.init_app(app)
 
     from . import auth
+    from . import blog
     app.register_blueprint(auth.bp)
+    app.register_blueprint(blog.bp)
 
     return app

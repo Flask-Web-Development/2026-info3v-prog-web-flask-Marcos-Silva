@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Novo Pet{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="nome">Nome</label>
+    <input name="nome" id="nome" value="{{ request.form['nome'] }}" required>
+
+    <label for="especie">Espécie</label>
+    <input name="especie" id="especie" value="{{ request.form['especie'] }}" required>
+
+    <label for="raca">Raça</label>
+    <input name="raca" id="raca" value="{{ request.form['raca'] }}">
+
+    <label for="idade">Idade</label>
+    <input name="idade" id="idade" value="{{ request.form['idade'] }}">
+
+    <input type="submit" value="Salvar">
+  </form>
+{% endblock %}
